@@ -79,6 +79,21 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  /* "choose another date" — return to form from the fully-booked state */
+  var chooseAnotherBtn = document.getElementById('of-choose-another');
+  if (chooseAnotherBtn) {
+    chooseAnotherBtn.addEventListener('click', function () {
+      bookedEl.hidden = true;
+      form.hidden = false;
+      setLoading(false);
+      var dateField = document.getElementById('of-date');
+      if (dateField) {
+        dateField.value = '';
+        dateField.focus();
+      }
+    });
+  }
+
   /* set minimum delivery date to tomorrow */
   var dateInput = document.getElementById('of-date');
   if (dateInput) {
