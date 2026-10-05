@@ -143,17 +143,20 @@ document.addEventListener('DOMContentLoaded', function () {
       setLoading(true);
 
       try {
-        var url = new URL(SCRIPT_URL);
-        url.searchParams.set('key', 'suri2026ct');
-        url.searchParams.set('name', name);
-        url.searchParams.set('phone', phone);
-        url.searchParams.set('product', product);
-        url.searchParams.set('deliveryDate', deliveryDate);
-        url.searchParams.set('area', area);
-        url.searchParams.set('notes', notes);
-        url.searchParams.set('customDescription', customDesc);
-
-        var response = await fetch(url.toString(), { redirect: 'follow' });
+        var response = await fetch(SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({
+            name: name,
+            phone: phone,
+            product: product,
+            deliveryDate: deliveryDate,
+            area: area,
+            notes: notes,
+            customDescription: customDesc,
+            key: 'suri2026ct'
+          })
+        });
 
         var result = await response.json();
 
