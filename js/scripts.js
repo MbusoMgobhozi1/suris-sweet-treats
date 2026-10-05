@@ -82,9 +82,9 @@ document.addEventListener('DOMContentLoaded', function () {
   /* set minimum delivery date to tomorrow */
   var dateInput = document.getElementById('of-date');
   if (dateInput) {
-    var tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    dateInput.min = tomorrow.toISOString().split('T')[0];
+    var minDate = new Date();
+    minDate.setDate(minDate.getDate() + 3);
+    dateInput.min = minDate.toISOString().split('T')[0];
   }
 
   function showError(msg) {
@@ -160,7 +160,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         var result = await response.json();
 
-        if (result.message === 'fully_booked') {
+        if (result.message === 'too_soon') {
+          showError('Please select a delivery date at least 3 days from today.');
+          setLoading(false);
+        } else if (result.message === 'fully_booked') {
           form.hidden = true;
           bookedEl.hidden = false;
         } else if (result.success) {
