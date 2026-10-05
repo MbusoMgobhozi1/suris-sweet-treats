@@ -142,24 +142,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
       setLoading(true);
 
-      try {
-        var response = await fetch(SCRIPT_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify({
-            name: name,
-            phone: phone,
-            product: product,
-            deliveryDate: deliveryDate,
-            area: area,
-            notes: notes,
-            customDescription: customDesc,
-            key: 'suri2026ct'
-          })
-        });
+      var cbName = 'jsonpCb_' + Date.now();
+      var script = document.createElement('script');
 
-        var result = await response.json();
+      var timer = setTimeout(function () {
+        cleanup();
+        showError('Could not connect. Please check your internet and try again.');
+        setLoading(false);
+      }, 20000);
 
+      function cleanup() {
+        clearTimeout(timer);
+        delete window[cbName];
+        if (script.parentNode) script.parentNode.removeChild(script);
+      }
+
+      window[cbName] = function (result) {
+        cleanup();
         if (result.message === 'too_soon') {
           showError('Please select a delivery date at least 3 days from today.');
           setLoading(false);
@@ -174,10 +173,26 @@ document.addEventListener('DOMContentLoaded', function () {
           showError('Something went wrong. Please try again or contact us directly.');
           setLoading(false);
         }
-      } catch (err) {
+      };
+
+      var url = new URL(SCRIPT_URL);
+      url.searchParams.set('callback', cbName);
+      url.searchParams.set('key', 'suri2026ct');
+      url.searchParams.set('name', name);
+      url.searchParams.set('phone', phone);
+      url.searchParams.set('product', product);
+      url.searchParams.set('deliveryDate', deliveryDate);
+      url.searchParams.set('area', area);
+      url.searchParams.set('notes', notes);
+      url.searchParams.set('customDescription', customDesc);
+
+      script.src = url.toString();
+      script.onerror = function () {
+        cleanup();
         showError('Could not connect. Please check your internet and try again.');
         setLoading(false);
-      }
+      };
+      document.head.appendChild(script);
     });
   }
 
