@@ -290,8 +290,40 @@
         <div class="of-state" id="of-success" hidden>
             <div class="of-state-icon">✦</div>
             <h3 class="of-state-title">Order Received!</h3>
-            <p class="of-state-body">Thank you, <strong id="of-success-name"></strong>. We'll confirm your order via WhatsApp shortly.</p>
-            <p class="order-note">Baked with love · Cape Town delivery</p>
+            <p class="of-state-body">Thank you, <strong id="of-success-name"></strong>. <span id="of-pay-intro">To secure your order, please pay the full amount via EFT using the details below.</span><span id="of-custom-intro" hidden>We'll review your custom cake and confirm the price with you via WhatsApp. Payment details will follow once it's confirmed.</span></p>
+
+            <dl class="of-pay" id="of-pay">
+                <div class="of-pay-row of-pay-row--total">
+                    <dt>AMOUNT DUE</dt>
+                    <dd id="of-pay-amount"></dd>
+                </div>
+                <div class="of-pay-row">
+                    <dt>ACCOUNT NAME</dt>
+                    <dd><span>MA Mgobhozi</span><button type="button" class="of-copy" data-copy="MA Mgobhozi">COPY</button></dd>
+                </div>
+                <div class="of-pay-row">
+                    <dt>BANK</dt>
+                    <dd><span>Absa</span></dd>
+                </div>
+                <div class="of-pay-row">
+                    <dt>ACCOUNT NUMBER</dt>
+                    <dd><span>9407822111</span><button type="button" class="of-copy" data-copy="9407822111">COPY</button></dd>
+                </div>
+                <div class="of-pay-row">
+                    <dt>ACCOUNT TYPE</dt>
+                    <dd><span>Savings</span></dd>
+                </div>
+                <div class="of-pay-row">
+                    <dt>BRANCH CODE</dt>
+                    <dd><span>632005</span><button type="button" class="of-copy" data-copy="632005">COPY</button></dd>
+                </div>
+                <div class="of-pay-row">
+                    <dt>PAYMENT REFERENCE</dt>
+                    <dd><span id="of-pay-ref"></span><button type="button" class="of-copy" id="of-copy-ref">COPY</button></dd>
+                </div>
+            </dl>
+
+            <p class="order-note" id="of-pay-note">Please use the reference above so we can match your payment · We'll confirm your order via WhatsApp</p>
         </div>
 
         <div class="of-state" id="of-booked" hidden>

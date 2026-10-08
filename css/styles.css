@@ -484,6 +484,34 @@ body[data-hover] .c-ring   { width:50px; height:50px; border-color:var(--gold); 
   max-width:360px;
 }
 
+/* payment details (success state) */
+.of-pay {
+  border:1px solid var(--ln-d);
+  max-width:440px;
+}
+.of-pay-row {
+  display:flex; justify-content:space-between; align-items:center; gap:16px;
+  padding:12px 16px;
+  border-bottom:1px solid var(--ln-d);
+}
+.of-pay-row:last-child { border-bottom:none; }
+.of-pay-row dt {
+  font-size:10px; letter-spacing:2px; color:var(--txt-dm); flex-shrink:0;
+}
+.of-pay-row dd {
+  display:flex; align-items:center; gap:12px;
+  font-size:14px; color:var(--txt-d); text-align:right; word-break:break-word;
+}
+.of-pay-row--total dd {
+  font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--gold);
+}
+.of-copy {
+  background:none; border:1px solid var(--ln-d); color:var(--gold);
+  font-size:9px; letter-spacing:1.5px; padding:4px 8px; cursor:pointer;
+  font-family:inherit; transition:border-color .25s, background .25s;
+}
+.of-copy:hover { border-color:rgba(212,168,67,.6); background:rgba(212,168,67,.08); }
+
 /* ── FOOTER ── */
 .site-footer { background:#100903; position:relative; overflow:hidden; padding:60px 7% 50px; border-top:1px solid var(--ln-d); }
 .ft-ghost {

@@ -6,7 +6,7 @@ Website for Suri's Sweet Treats — a Cape Town home bakery specialising in hand
 
 Built with plain HTML, CSS and JavaScript. No frameworks, no dependencies.
 
-Orders are submitted via a form connected to Google Apps Script, which writes to a Google Sheet and sends an email notification. Orders are limited to 3 per day.
+Orders are submitted via a form connected to Google Apps Script, which writes to a Google Sheet. Orders are limited to 3 per day. After ordering, customers see EFT bank details, the amount due and a payment reference (custom cakes are quoted via WhatsApp first).
 
 ## Deployment
 

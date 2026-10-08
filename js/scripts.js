@@ -124,6 +124,34 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  /* ── PAYMENT DETAILS ── */
+  function showPayment(name, product) {
+    var isCustom = product === 'Custom Cake';
+    document.getElementById('of-pay').hidden = isCustom;
+    document.getElementById('of-pay-note').hidden = isCustom;
+    document.getElementById('of-pay-intro').hidden = isCustom;
+    document.getElementById('of-custom-intro').hidden = !isCustom;
+    if (isCustom) return;
+    var option = document.querySelector('#of-product option[value="' + product + '"]');
+    var match  = option && option.textContent.match(/R(\d+)/);
+    document.getElementById('of-pay-amount').textContent =
+      match ? 'R' + match[1] : 'To be confirmed';
+    document.getElementById('of-pay-ref').textContent = name + '-' + product;
+  }
+
+  document.querySelectorAll('.of-copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.id === 'of-copy-ref'
+        ? document.getElementById('of-pay-ref').textContent
+        : btn.getAttribute('data-copy');
+      var done = function () {
+        btn.textContent = 'COPIED';
+        setTimeout(function () { btn.textContent = 'COPY'; }, 1500);
+      };
+      if (navigator.clipboard) navigator.clipboard.writeText(text).then(done);
+    });
+  });
+
   if (form) {
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
@@ -160,11 +188,12 @@ document.addEventListener('DOMContentLoaded', function () {
       var cbName = 'jsonpCb_' + Date.now();
       var script = document.createElement('script');
 
+      /* Apps Script can be slow. On timeout keep listening (callback stays registered)
+         so a late reply still shows the result, and keep the button disabled so the
+         customer doesn't resubmit and create a duplicate order. */
       var timer = setTimeout(function () {
-        cleanup();
-        showError('Could not connect. Please check your internet and try again.');
-        setLoading(false);
-      }, 20000);
+        showError('This is taking longer than usual. Please wait — don\'t resubmit. If nothing happens in a minute, contact us on WhatsApp.');
+      }, 30000);
 
       function cleanup() {
         clearTimeout(timer);
@@ -174,6 +203,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       window[cbName] = function (result) {
         cleanup();
+        clearError();
         if (result.message === 'too_soon') {
           showError('Please select a delivery date at least 3 days from today.');
           setLoading(false);
@@ -182,6 +212,7 @@ document.addEventListener('DOMContentLoaded', function () {
           bookedEl.hidden = false;
         } else if (result.success) {
           document.getElementById('of-success-name').textContent = name;
+          showPayment(name, product);
           form.hidden = true;
           successEl.hidden = false;
         } else {
