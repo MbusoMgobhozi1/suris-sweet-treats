@@ -67,13 +67,18 @@ document.addEventListener('DOMContentLoaded', function () {
   var successEl = document.getElementById('of-success');
   var bookedEl  = document.getElementById('of-booked');
 
+  /* cakes priced by quote: need a description, no upfront payment */
+  function isQuoteOnly(product) {
+    return product === 'Custom Cake' || product === 'Birthday Cake';
+  }
+
   /* show/hide custom cake description field */
   var productSelect  = document.getElementById('of-product');
   var customRow      = document.getElementById('of-custom-row');
   var customTextarea = document.getElementById('of-custom');
   if (productSelect) {
     productSelect.addEventListener('change', function () {
-      var isCustom = productSelect.value === 'Custom Cake';
+      var isCustom = isQuoteOnly(productSelect.value);
       customRow.hidden = !isCustom;
       if (customTextarea) customTextarea.required = isCustom;
     });
@@ -151,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function showPayment(name, product, deliveryDate) {
-    var isCustom = product === 'Custom Cake';
+    var isCustom = isQuoteOnly(product);
     setWhatsApp(name, product, deliveryDate);
     document.getElementById('of-pay').hidden = isCustom;
     document.getElementById('of-pay-note').hidden = isCustom;
@@ -198,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!product)      { form.querySelector('#of-product').classList.add('of-invalid'); invalid = true; }
       if (!deliveryDate) { form.querySelector('#of-date').classList.add('of-invalid');    invalid = true; }
       if (!area || area === 'OUTSIDE') { form.querySelector('#of-area').classList.add('of-invalid');    invalid = true; }
-      if (product === 'Custom Cake' && !customDesc) {
+      if (isQuoteOnly(product) && !customDesc) {
         form.querySelector('#of-custom').classList.add('of-invalid');
         invalid = true;
       }
