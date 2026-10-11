@@ -125,8 +125,18 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ── PAYMENT DETAILS ── */
-  function showPayment(name, product) {
+  var WA_NUMBER = '27618205270';
+
+  function setWhatsApp(name, product, deliveryDate) {
+    var msg = 'Hi Suri\'s Sweet Treats, I\'ve just ordered ' + product + ' for ' + deliveryDate +
+      ' (name: ' + name + '). Here are my ideas and inspiration photos:';
+    document.getElementById('of-wa').href =
+      'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
+  }
+
+  function showPayment(name, product, deliveryDate) {
     var isCustom = product === 'Custom Cake';
+    setWhatsApp(name, product, deliveryDate);
     document.getElementById('of-pay').hidden = isCustom;
     document.getElementById('of-pay-note').hidden = isCustom;
     document.getElementById('of-pay-intro').hidden = isCustom;
@@ -212,7 +222,7 @@ document.addEventListener('DOMContentLoaded', function () {
           bookedEl.hidden = false;
         } else if (result.success) {
           document.getElementById('of-success-name').textContent = name;
-          showPayment(name, product);
+          showPayment(name, product, deliveryDate);
           form.hidden = true;
           successEl.hidden = false;
         } else {
