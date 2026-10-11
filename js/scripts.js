@@ -94,6 +94,22 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  /* outside the 25 km delivery radius: block the order and point them to WhatsApp */
+  var areaSelect = document.getElementById('of-area');
+  var farNote    = document.getElementById('of-far');
+  if (areaSelect) {
+    areaSelect.addEventListener('change', function () {
+      var far = areaSelect.value === 'OUTSIDE';
+      farNote.hidden = !far;
+      submitBtn.disabled = far;
+      if (far) {
+        var msg = 'Hi Suri\'s Sweet Treats, I\'m outside your delivery area. Could we arrange collection or a halfway spot to meet?';
+        document.getElementById('of-far-wa').href =
+          'https://wa.me/27618205270?text=' + encodeURIComponent(msg);
+      }
+    });
+  }
+
   /* set minimum delivery date to tomorrow */
   var dateInput = document.getElementById('of-date');
   if (dateInput) {
@@ -171,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var phone        = form.querySelector('#of-phone').value.trim();
       var product      = form.querySelector('#of-product').value;
       var deliveryDate = form.querySelector('#of-date').value;
-      var area         = form.querySelector('#of-area').value.trim();
+      var area         = form.querySelector('#of-area').value;
       var notes        = form.querySelector('#of-notes').value.trim();
       var customDesc   = form.querySelector('#of-custom') ? form.querySelector('#of-custom').value.trim() : '';
 
@@ -181,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!phone)        { form.querySelector('#of-phone').classList.add('of-invalid');   invalid = true; }
       if (!product)      { form.querySelector('#of-product').classList.add('of-invalid'); invalid = true; }
       if (!deliveryDate) { form.querySelector('#of-date').classList.add('of-invalid');    invalid = true; }
-      if (!area)         { form.querySelector('#of-area').classList.add('of-invalid');    invalid = true; }
+      if (!area || area === 'OUTSIDE') { form.querySelector('#of-area').classList.add('of-invalid');    invalid = true; }
       if (product === 'Custom Cake' && !customDesc) {
         form.querySelector('#of-custom').classList.add('of-invalid');
         invalid = true;

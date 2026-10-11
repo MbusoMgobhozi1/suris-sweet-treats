@@ -273,18 +273,69 @@
                 </div>
                 <div>
                     <label class="of-label" for="of-area">AREA IN CAPE TOWN</label>
-                    <input class="of-input" id="of-area" name="area" type="text" placeholder="e.g. Claremont" required>
+                    <select class="of-input of-select" id="of-area" name="area" required>
+                        <option value="" disabled selected>Select your area…</option>
+                        <option value="Bellville">Bellville</option>
+                        <option value="Blouberg">Blouberg</option>
+                        <option value="Bo-Kaap">Bo-Kaap</option>
+                        <option value="Bothasig">Bothasig</option>
+                        <option value="Brackenfell">Brackenfell</option>
+                        <option value="Brooklyn">Brooklyn</option>
+                        <option value="Camps Bay">Camps Bay</option>
+                        <option value="Century City">Century City</option>
+                        <option value="City Bowl / CBD">City Bowl / CBD</option>
+                        <option value="Claremont">Claremont</option>
+                        <option value="Clifton">Clifton</option>
+                        <option value="Constantia">Constantia</option>
+                        <option value="Edgemead">Edgemead</option>
+                        <option value="Epping">Epping</option>
+                        <option value="Foreshore">Foreshore</option>
+                        <option value="Gardens">Gardens</option>
+                        <option value="Goodwood">Goodwood</option>
+                        <option value="Green Point">Green Point</option>
+                        <option value="Kenilworth">Kenilworth</option>
+                        <option value="Kraaifontein">Kraaifontein</option>
+                        <option value="Lakeside">Lakeside</option>
+                        <option value="Maitland">Maitland</option>
+                        <option value="Melkbosstrand">Melkbosstrand</option>
+                        <option value="Milnerton">Milnerton</option>
+                        <option value="Montague Gardens">Montague Gardens</option>
+                        <option value="Mowbray">Mowbray</option>
+                        <option value="Muizenberg">Muizenberg</option>
+                        <option value="Newlands">Newlands</option>
+                        <option value="Observatory">Observatory</option>
+                        <option value="Ottery">Ottery</option>
+                        <option value="Panorama">Panorama</option>
+                        <option value="Parow">Parow</option>
+                        <option value="Pinelands">Pinelands</option>
+                        <option value="Plattekloof">Plattekloof</option>
+                        <option value="Plumstead">Plumstead</option>
+                        <option value="Rondebosch">Rondebosch</option>
+                        <option value="Salt River">Salt River</option>
+                        <option value="Sea Point">Sea Point</option>
+                        <option value="Southfield">Southfield</option>
+                        <option value="Sunningdale">Sunningdale</option>
+                        <option value="Surrey Estate">Surrey Estate</option>
+                        <option value="Table View">Table View</option>
+                        <option value="Tamboerskloof">Tamboerskloof</option>
+                        <option value="Tygervalley">Tygervalley</option>
+                        <option value="Woodstock">Woodstock</option>
+                        <option value="Wynberg">Wynberg</option>
+                        <option value="Zonnebloem">Zonnebloem</option>
+                        <option value="OUTSIDE">My area isn't listed — arrange collection</option>
+                    </select>
                 </div>
             </div>
             <div class="of-row">
                 <label class="of-label" for="of-notes">SPECIAL REQUESTS <span class="of-opt">(optional)</span></label>
                 <textarea class="of-input of-textarea" id="of-notes" name="notes" placeholder="Allergies, special messages, custom details…" rows="3"></textarea>
             </div>
+            <p class="of-error of-far" id="of-far" hidden>We don't deliver to this area. <a href="#" id="of-far-wa" target="_blank" rel="noopener">Chat to us on WhatsApp</a> to arrange collection or a convenient halfway spot to meet.</p>
             <p class="of-error" id="of-error"></p>
             <button class="btn-gold of-submit" type="submit" id="of-submit">
                 <span id="of-submit-text">PLACE ORDER <span>→</span></span>
             </button>
-            <p class="order-note">3 days advance notice required · Cape Town only · We'll confirm via WhatsApp</p>
+            <p class="order-note">3 days advance notice required · Delivery within 25 km of Century City · We'll confirm via WhatsApp</p>
         </form>
 
         <div class="of-state" id="of-success" hidden>

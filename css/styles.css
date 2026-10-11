@@ -463,6 +463,9 @@ body[data-hover] .c-ring   { width:50px; height:50px; border-color:var(--gold); 
   display:none;
 }
 .of-error.visible { display:block; }
+.of-far { display:block; line-height:1.6; color:var(--txt-d); border:1px solid rgba(212,168,67,.4); padding:12px 14px; }
+.of-far[hidden] { display:none; }
+.of-far a { color:#d4a843; text-decoration:underline; }
 .of-submit { width:100%; justify-content:center; margin-top:4px; }
 .of-submit:disabled { opacity:.55; cursor:not-allowed; }
 
