@@ -23,7 +23,10 @@
             <a href="#treats">OUR TREATS</a>
             <a href="#story">OUR STORY</a>
         </nav>
-        <a href="#order" class="hd-order">ORDER NOW <span>→</span></a>
+        <div class="hd-actions">
+            <button type="button" class="hd-basket" id="js-basket-open" aria-label="Open basket">BASKET <span class="hd-basket-n" id="js-basket-count">0</span></button>
+            <a href="#treats" class="hd-order">ORDER NOW <span>→</span></a>
+        </div>
     </div>
 </header>
 
@@ -85,8 +88,8 @@
                 <h3 class="tc-name">Chocolate<br>Cake</h3>
                 <p class="tc-body">Rich, moist and unforgettable — a deep chocolate crumb with silky topping.</p>
                 <div class="tc-foot">
-                    <span class="tc-price">R250</span>
-                    <a href="#order" class="tc-link" data-product="Chocolate Cake">ORDER →</a>
+                    <span class="tc-price">R350</span>
+                    <a href="#order" class="tc-link" data-product="cake-chocolate">ORDER →</a>
                 </div>
             </div>
         </article>
@@ -101,8 +104,8 @@
                 <h3 class="tc-name">Red Velvet<br>Cake</h3>
                 <p class="tc-body">Velvety, deep red crumb with a light cocoa warmth — stunning with cream cheese topping.</p>
                 <div class="tc-foot">
-                    <span class="tc-price">from R250</span>
-                    <a href="#order" class="tc-link" data-product="Red Velvet Cake">ORDER →</a>
+                    <span class="tc-price">from R400</span>
+                    <a href="#order" class="tc-link" data-product="cake-red-velvet">ORDER →</a>
                 </div>
             </div>
         </article>
@@ -118,7 +121,7 @@
                 <p class="tc-body">Choose your flavour — chocolate, caramel or vanilla. Each one soft, generous and finished beautifully.</p>
                 <div class="tc-foot">
                     <span class="tc-price">R70</span>
-                    <a href="#order" class="tc-link" data-product="Chocolate Cupcakes (6)">ORDER →</a>
+                    <a href="#order" class="tc-link" data-product="cupcakes">ORDER →</a>
                 </div>
             </div>
         </article>
@@ -133,8 +136,8 @@
                 <h3 class="tc-name">Lemon<br>Cake</h3>
                 <p class="tc-body">Light, fresh and beautifully zesty with a smooth citrus glaze.</p>
                 <div class="tc-foot">
-                    <span class="tc-price">R200</span>
-                    <a href="#order" class="tc-link" data-product="Lemon Cake">ORDER →</a>
+                    <span class="tc-price">R250</span>
+                    <a href="#order" class="tc-link" data-product="cake-lemon">ORDER →</a>
                 </div>
             </div>
         </article>
@@ -149,8 +152,8 @@
                 <h3 class="tc-name">Caramel<br>Cake</h3>
                 <p class="tc-body">Buttery, golden and irresistibly rich — a full caramel cake made to satisfy every sweet craving.</p>
                 <div class="tc-foot">
-                    <span class="tc-price">R200</span>
-                    <a href="#order" class="tc-link" data-product="Caramel Cake">ORDER →</a>
+                    <span class="tc-price">R250</span>
+                    <a href="#order" class="tc-link" data-product="cake-caramel">ORDER →</a>
                 </div>
             </div>
         </article>
@@ -166,7 +169,7 @@
                 <p class="tc-body">All the magic of cake in a cup — crumbly, indulgent and impossible to put down.</p>
                 <div class="tc-foot">
                     <span class="tc-price">R70</span>
-                    <a href="#order" class="tc-link" data-product="Cake Crumble Cup">ORDER →</a>
+                    <a href="#order" class="tc-link" data-product="crumble-cup">ORDER →</a>
                 </div>
             </div>
         </article>
@@ -185,14 +188,26 @@
                         <p class="tc-body tc-body--show">Silky, creamy and deeply comforting — a classic South African milk filling on a delicate biscuit base, dusted with cinnamon.</p>
                     </div>
                     <div class="tc-wide-right">
-                        <span class="tc-price">R180</span>
-                        <a href="#order" class="tc-link" data-product="Milk Tart">ORDER →</a>
+                        <span class="tc-price">R200</span>
+                        <a href="#order" class="tc-link" data-product="milk-tart">ORDER →</a>
                         <span class="tc-wide-label" aria-hidden="true">CAPE TOWN<br>FAVOURITE</span>
                     </div>
                 </div>
             </div>
         </article>
 
+    </div>
+
+    <div class="custom-strip reveal">
+        <div>
+            <span class="sec-kicker">CUSTOM ORDERS</span>
+            <h3 class="custom-h">Something <em>special</em> in mind?</h3>
+            <p class="custom-p">Birthdays, celebrations or a cake only you can imagine — tell us about it and we'll quote you.</p>
+        </div>
+        <div class="custom-btns">
+            <button type="button" class="btn-ghost tc-link-btn" data-product="birthday-cake">BIRTHDAY CAKE <span>→</span></button>
+            <button type="button" class="btn-ghost tc-link-btn" data-product="custom-cake">CUSTOM CAKE <span>→</span></button>
+        </div>
     </div>
 </section>
 
@@ -213,7 +228,7 @@
         <h2 class="story-h2">Made with love.<br><em>Opened with joy.</em></h2>
         <p>Suri's Sweet Treats began with a love for baking at home and grew into something worth sharing. Every treat is made from scratch, with care, from the first mix to the final detail — as it aims to bring you one step closer to home.</p>
         <p>Suri's Sweet Treats is created to share a little love with each bite.</p>
-        <a href="#order" class="btn-ghost">PLACE AN ORDER <span>→</span></a>
+        <a href="#treats" class="btn-ghost">PLACE AN ORDER <span>→</span></a>
     </div>
 </section>
 
@@ -230,7 +245,12 @@
         <p class="sec-kicker sec-kicker--light">PLACE YOUR ORDER</p>
         <h2 class="order-h2">Made for giving.<br>Even when you're<br><em>keeping it.</em></h2>
 
-        <form class="order-form" id="order-form" novalidate>
+        <div class="of-state of-empty" id="of-empty">
+            <p class="of-state-body">Your basket is empty. Pick a treat to get started — you can add as many as you like.</p>
+            <a href="#treats" class="btn-gold of-submit">BROWSE THE TREATS <span>→</span></a>
+        </div>
+
+        <form class="order-form" id="order-form" novalidate hidden>
             <div class="of-row">
                 <label class="of-label" for="of-name">YOUR NAME</label>
                 <input class="of-input" id="of-name" name="name" type="text" placeholder="Jane Smith" required>
@@ -239,33 +259,14 @@
                 <label class="of-label" for="of-phone">WHATSAPP / PHONE</label>
                 <input class="of-input" id="of-phone" name="phone" type="tel" placeholder="+27 71 234 5678" required>
             </div>
-            <div class="of-row">
-                <label class="of-label" for="of-product">TREAT</label>
-                <select class="of-input of-select" id="of-product" name="product" required>
-                    <option value="" disabled selected>Select a treat…</option>
-                    <option value="Custom Cake">Something custom — describe it below</option>
-                    <option value="Birthday Cake">Birthday Cake — describe it below</option>
-                    <option disabled>─── CAKES ───</option>
-                    <option value="Chocolate Cake">Chocolate Cake — R250</option>
-                    <option value="Red Velvet Cake">Red Velvet Cake — R250</option>
-                    <option value="Red Velvet Cake with Cream Cheese">Red Velvet Cake with Cream Cheese — R300</option>
-                    <option value="Carrot Cake">Carrot Cake — R200</option>
-                    <option value="Carrot Cake with Cream Cheese">Carrot Cake with Cream Cheese — R300</option>
-                    <option value="Caramel Cake">Caramel Cake — R200</option>
-                    <option value="Lemon Cake">Lemon Cake — R200</option>
-                    <option disabled>─── SWEET TREATS ───</option>
-                    <option value="Cake Crumble Cup">Cake Crumble Cup — R70</option>
-                    <option disabled>─── CUPCAKES (6 per box) ───</option>
-                    <option value="Chocolate Cupcakes (6)">Chocolate Cupcakes (6) — R70</option>
-                    <option value="Caramel Cupcakes (6)">Caramel Cupcakes (6) — R70</option>
-                    <option value="Vanilla Cupcakes (6)">Vanilla Cupcakes (6) — R70</option>
-                    <option disabled>─── TARTS ───</option>
-                    <option value="Milk Tart">Milk Tart — R180</option>
-                </select>
-            </div>
-            <div class="of-row" id="of-custom-row" hidden>
-                <label class="of-label" for="of-custom">DESCRIBE YOUR CAKE</label>
-                <textarea class="of-input of-textarea" id="of-custom" name="customDescription" placeholder="Tell us what you have in mind — flavours, size, occasion, colours, any special details…" rows="4"></textarea>
+            <div class="of-basket" id="of-summary">
+                <div class="of-basket-hd">
+                    <span class="of-label">YOUR ORDER</span>
+                    <button type="button" class="of-edit" id="of-edit-basket">EDIT BASKET</button>
+                </div>
+                <ul class="of-basket-list" id="of-summary-list"></ul>
+                <div class="of-basket-total"><span>TOTAL</span><strong id="of-summary-total"></strong></div>
+                <p class="of-basket-note" id="of-summary-note" hidden>Custom cakes are quoted — we'll confirm the final price with you on WhatsApp.</p>
             </div>
             <div class="of-row of-row--half">
                 <div>
@@ -328,8 +329,8 @@
                 </div>
             </div>
             <div class="of-row">
-                <label class="of-label" for="of-notes">SPECIAL REQUESTS <span class="of-opt">(optional)</span></label>
-                <textarea class="of-input of-textarea" id="of-notes" name="notes" placeholder="Allergies, special messages, custom details…" rows="3"></textarea>
+                <label class="of-label" for="of-notes">ANYTHING ELSE? <span class="of-opt">(optional)</span></label>
+                <textarea class="of-input of-textarea" id="of-notes" name="notes" placeholder="Allergies, delivery instructions…" rows="3"></textarea>
             </div>
             <p class="of-error of-far" id="of-far" hidden>We don't deliver to this area. <a href="#" id="of-far-wa" target="_blank" rel="noopener">Chat to us on WhatsApp</a> to arrange collection or a convenient halfway spot to meet.</p>
             <p class="of-error" id="of-error"></p>
@@ -408,6 +409,49 @@
         <p class="ft-tagline">Baked with love,<br><em>every single day.</em></p>
     </div>
 </footer>
+
+<!-- CUSTOMISE MODAL -->
+<div class="pm" id="pm" aria-hidden="true">
+    <div class="pm-backdrop" data-close-pm></div>
+    <div class="pm-dialog" role="dialog" aria-modal="true" aria-labelledby="pm-title">
+        <div class="pm-head">
+            <h3 class="pm-title" id="pm-title"></h3>
+            <button type="button" class="pm-x" data-close-pm aria-label="Close">&times;</button>
+        </div>
+        <div class="pm-main">
+            <div class="pm-img"><img id="pm-img" src="" alt=""></div>
+            <div class="pm-opts" id="pm-opts"></div>
+        </div>
+        <div class="pm-foot">
+            <div class="pm-sel">
+                <span class="pm-sel-l">YOUR SELECTION</span>
+                <span class="pm-sel-t" id="pm-sel-txt"></span>
+            </div>
+            <span class="pm-total" id="pm-total"></span>
+            <button type="button" class="btn-gold pm-add" id="pm-add">ADD TO BASKET <span>→</span></button>
+        </div>
+    </div>
+</div>
+
+<!-- BASKET DRAWER -->
+<aside class="bk" id="bk" aria-hidden="true" aria-label="Your basket">
+    <div class="bk-backdrop" data-close-bk></div>
+    <div class="bk-panel">
+        <div class="bk-head">
+            <h3 class="bk-title">Your Basket <span id="bk-count"></span></h3>
+            <button type="button" class="pm-x" data-close-bk aria-label="Close basket">&times;</button>
+        </div>
+        <ul class="bk-list" id="bk-list"></ul>
+        <p class="bk-empty" id="bk-empty">Your basket is empty.</p>
+        <div class="bk-foot" id="bk-foot">
+            <div class="bk-sub"><span>Subtotal</span><strong id="bk-subtotal"></strong></div>
+            <p class="bk-quote" id="bk-quote" hidden>+ custom cakes, quoted on WhatsApp</p>
+            <button type="button" class="btn-gold bk-go" id="bk-checkout">PROCEED TO CHECKOUT <span>→</span></button>
+            <button type="button" class="bk-more" data-close-bk>Continue shopping</button>
+            <p class="bk-delivery">Delivery within 25 km of Century City · 3 days notice</p>
+        </div>
+    </div>
+</aside>
 
 <script src="js/scripts.js"></script>
 </body>
