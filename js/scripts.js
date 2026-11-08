@@ -59,12 +59,21 @@ document.addEventListener('DOMContentLoaded', function () {
   var MAX_LINES = 10;
   var MAX_URL = 6000;
 
+  /* icings every cake can have; 'extra' is added to the price */
+  var ICINGS = [
+    { value: 'buttercream',  label: 'Buttercream',  extra: 0 },
+    { value: 'cream-cheese', label: 'Cream Cheese', extra: CREAM_CHEESE_EXTRA },
+    { value: 'zesty-cream',  label: 'Zesty Cream',  extra: 0 },
+    { value: 'chocolate',    label: 'Chocolate',    extra: 0 }
+  ];
   var CAKES = [
     { id: 'chocolate',  name: 'Chocolate',  price: 350, img: 'images/chocolate-cake.png' },
     { id: 'red-velvet', name: 'Red Velvet', price: 400, img: 'images/red-velvet-cake.png' },
-    { id: 'lemon',      name: 'Lemon',      price: 250, img: 'images/lemon-cake.png' },
+    { id: 'lemon',      name: 'Lemon',      price: 250, img: 'images/lemon-cake.png', defaultIcing: 'zesty-cream' },
     { id: 'caramel',    name: 'Caramel',    price: 250, img: 'images/caramel-cake.png' }
   ];
+  function defaultIcing(cake) { return cake.defaultIcing || 'buttercream'; }
+  function icingById(id) { return ICINGS.filter(function (i) { return i.value === id; })[0]; }
 
   var PRODUCTS = {
     'cake-chocolate':   { kind: 'cake', cake: 'chocolate' },
@@ -214,6 +223,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!def) return;
     st = { id: id, def: def, qty: 1, notes: '', desc: '', icing: 'buttercream',
            cake: def.kind === 'cake' ? def.cake : null, option: def.options ? def.options[0] : null };
+    if (st.cake) st.icing = defaultIcing(cakeById(st.cake));
     buildModal();
     pm.classList.add('open'); pm.setAttribute('aria-hidden', 'false');
     document.body.classList.add('no-scroll');
@@ -280,11 +290,10 @@ document.addEventListener('DOMContentLoaded', function () {
     if (def.kind === 'cake') {
       opts.appendChild(chipGroup('Flavour', n++, CAKES.map(function (c) {
         return { value: c.id, label: c.name, sub: money(c.price) };
-      }), st.cake, function (v) { st.cake = v; buildModal(); }));
-      opts.appendChild(chipGroup('Icing', n++, [
-        { value: 'buttercream', label: 'Buttercream', sub: 'included' },
-        { value: 'cream-cheese', label: 'Cream Cheese', sub: '+' + money(CREAM_CHEESE_EXTRA) }
-      ], st.icing, function (v) { st.icing = v; buildModal(); }));
+      }), st.cake, function (v) { st.cake = v; st.icing = defaultIcing(cakeById(v)); buildModal(); }));
+      opts.appendChild(chipGroup('Icing', n++, ICINGS.map(function (i) {
+        return { value: i.value, label: i.label, sub: i.extra ? '+' + money(i.extra) : 'included' };
+      }), st.icing, function (v) { st.icing = v; buildModal(); }));
       opts.appendChild(qtyGroup(n++, 'Quantity'));
       opts.appendChild(textGroup(n++, 'Special requests', 'e.g. Happy Birthday message, pink decorations…', 'notes', false));
     } else if (def.kind === 'options') {
@@ -308,10 +317,10 @@ document.addEventListener('DOMContentLoaded', function () {
     var def = st.def, item;
     if (def.kind === 'cake') {
       var c = cakeById(st.cake);
-      var extra = st.icing === 'cream-cheese' ? CREAM_CHEESE_EXTRA : 0;
-      item = { id: st.id, title: c.name + ' Cake', img: c.img, unit: c.price + extra, qty: st.qty,
-               details: [st.icing === 'cream-cheese' ? 'Cream Cheese Icing' : 'Buttercream'], notes: st.notes.trim(), desc: '',
-               product: 'Cake', option: c.name, icing: st.icing === 'cream-cheese' ? 'Cream Cheese' : 'Buttercream' };
+      var ic = icingById(st.icing);
+      item = { id: st.id, title: c.name + ' Cake', img: c.img, unit: c.price + ic.extra, qty: st.qty,
+               details: [ic.label + ' Icing'], notes: st.notes.trim(), desc: '',
+               product: 'Cake', option: c.name, icing: ic.label };
     } else if (def.kind === 'options') {
       item = { id: st.id, title: def.short, img: def.img, unit: def.price, qty: st.qty,
                details: [st.option], notes: st.notes.trim(), desc: '',
